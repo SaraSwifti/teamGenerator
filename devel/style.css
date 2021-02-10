@@ -1,0 +1,15 @@
+ .nav-style {
+    text-align: center;
+    background-color: darkcyan;
+}
+.list-style {
+    background-color: rgb(58, 89, 126)
+}
+
+.card-style {
+    color: white;
+    background-color: rgb(58, 89, 126);
+    width: 30px;
+    margin-top: 60px;
+  
+}
