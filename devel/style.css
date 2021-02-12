@@ -1,6 +1,8 @@
- .nav-style {
+.jumbotron {
+    align-items: center;
+    background-color: rgb(94, 94, 134);
     text-align: center;
-    background-color: darkcyan;
+    color: #000;
 }
 .list-style {
     background-color: rgb(58, 89, 126)
