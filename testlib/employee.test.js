@@ -11,4 +11,4 @@ describe("Employee", () => {
             expect(mainEmp).toEqual(new Employee)
         })
     })
-})
+});
