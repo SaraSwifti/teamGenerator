@@ -8,6 +8,12 @@ class Manager extends Employee {
         this.officeNum = officeNum;
 
     }
+    getRole() {
+        return "Manager";
+    }
+    getOfficeNum () {
+        return this.officeNum;
+    }
 };
 //at the very bottom for the index.js
 module.exports = Manager;
