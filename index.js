@@ -1,10 +1,10 @@
-const Employee = require("../modlib/employee");
-const Engineer = require("../modlib/engineer");
-const Intern = require("../modlib/intern");
-const Manager = require("../modlib/manager");
+const Employee = require("./modlib/employee");
+const Engineer = require("./modlib/engineer");
+const Intern = require("./modlib/intern");
+const Manager = require("./modlib/manager");
 
 function employInfo() {
-    const PromptEmploy = () =>
+    // might now need this   const createEmploy = () =>
   inquirer.prompt([
     {
       type: 'input',
@@ -21,15 +21,23 @@ function employInfo() {
         name: 'id',
         message: 'Employee s id# ?',
       },
-    ]);
+    ]).then(responses => {
+      const employee = new Employee(responses.name, responses.email, responses.id) // do for each question asked
+      /// I don't think I need this because employee is overarching each team memberteamMemberArray.push(employee);
+  })
+}
+
+//write file function inside of main function, write filesync and path
+//createManager()
+//}
     
-};
+//};
 
 function managerInfo() {
     console.log('Please enter your managers information');
     employInfo();
     //office number question
-    const PromptManager = () =>
+    //might not need this   const PromptManager = () =>
     inquirer.prompt([
         {
           type: 'input',
@@ -37,14 +45,17 @@ function managerInfo() {
           message: 'What is the Manager s office number?',
         },
 
-    ]);
+    ]).then(responses => {
+      const manager = new Manager(responses.officeNum); // do for each question asked
+      teamMemberArray.push(manager);
+    });
 
 };
 
 function engineerInfo() {
     employInfo();
     //github question
-    const PromptEngineer = () =>
+   ///not sure if this is needed const PromptEngineer = () =>
     inquirer.prompt([
         {
           type: 'input',
@@ -52,13 +63,16 @@ function engineerInfo() {
           message: 'What is the Engineer s github username?',
         },
 
-    ]);
+    ]).then(responses => {
+      const engineer = new Engineer(responses.github); // do for each question asked
+      teamMemberArray.push(engineer);
+    });
 };
 
 function internInfo() {
     employInfo();
     //school question
-    const PromptIntern = () =>
+    ///not sure if this is needed const PromptIntern = () =>
     inquirer.prompt([
         {
           type: 'input',
@@ -66,12 +80,15 @@ function internInfo() {
           message: 'Which school does your intern go to?',
         },
 
-    ]);
+    ]).then(responses => {
+      const intern = new Intern(responses.school); // do for each question asked
+      teamMemberArray.push(manager);
+    });
     menu();
 };
 
 function menu(){
-    const Promptmenu = () =>
+    // not sure if this is needed const Promptmenu = () =>
     inquirer.prompt([
         {
             type: 'checkbox',
@@ -80,9 +97,9 @@ function menu(){
             choices: ['Engineer', 'Intern', 'Finished'],
           },
         ]).then((data) => {
-            if(data.choices [] === 'Engineer') {
+            if(data.choices  === 'Engineer') {
                 engineerInfo();
-        } else if (data.choices[] === 'Intern') {
+        } else if (data.choices === 'Intern') {
             internInfo();
         } else { 
             finished();
@@ -100,4 +117,4 @@ function finished() {
 function init() {
     managerInfo();
     }
-
+init();

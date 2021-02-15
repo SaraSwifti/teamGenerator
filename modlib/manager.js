@@ -15,5 +15,7 @@ class Manager extends Employee {
         return this.officeNum;
     }
 };
+//construct manager
+const manager = new Manager ();
 //at the very bottom for the index.js
 module.exports = Manager;
