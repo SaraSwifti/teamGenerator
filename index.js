@@ -2,9 +2,10 @@ const Employee = require("./modlib/employee");
 const Engineer = require("./modlib/engineer");
 const Intern = require("./modlib/intern");
 const Manager = require("./modlib/manager");
+const inquirer = require("inquirer");
 
-function employInfo() {
-    // might now need this   const createEmploy = () =>
+const employInfo = function() {
+     // const createEmploy = () =>
   inquirer.prompt([
     {
       type: 'input',
@@ -33,7 +34,7 @@ function employInfo() {
     
 //};
 
-function managerInfo() {
+const managerInfo = function() {
     console.log('Please enter your managers information');
     employInfo();
     //office number question
@@ -52,7 +53,7 @@ function managerInfo() {
 
 };
 
-function engineerInfo() {
+const engineerInfo = function() {
     employInfo();
     //github question
    ///not sure if this is needed const PromptEngineer = () =>
@@ -69,7 +70,7 @@ function engineerInfo() {
     });
 };
 
-function internInfo() {
+const internInfo = function() {
     employInfo();
     //school question
     ///not sure if this is needed const PromptIntern = () =>
@@ -87,7 +88,7 @@ function internInfo() {
     menu();
 };
 
-function menu(){
+const menu = function(){
     // not sure if this is needed const Promptmenu = () =>
     inquirer.prompt([
         {
@@ -109,7 +110,7 @@ function menu(){
     
 };
 
-function finished() {
+const finished = function() {
     // put the making of the HTML here
     console.log('finished for now')
 };
