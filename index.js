@@ -34,6 +34,7 @@ const employInfo = function() {
     
 //};
 
+
 const managerInfo = function() {
     console.log('Please enter your managers information');
     employInfo();
