@@ -5,43 +5,15 @@ const Manager = require("./modlib/manager");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const teamMemberArray = [];
-
-// const employInfo = function() {
-//   inquirer.prompt([
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'Employee s name?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'email',
-//         message: 'Employee s email?',
-//       },
-//       {
-//         type: 'input',
-//         name: 'id',
-//         message: 'Employee s id# ?',
-//       },
-//     ]);
-//   };
-  
-  //   .then(responses => {
-  //     const employee = new Employee(responses.name, responses.email, responses.id) // do for each question asked
-  //     /// I don't think I need this because employee is overarching each team memberteamMemberArray.push(employee);
-  // })
+const generateHtml = require('./html/html-print')
 
 
-//write file function inside of main function, write filesync and path
-//createManager()
-//}
-    
-//};
 
 
+//initiating manager function
 function managerInfo() {
   console.log('Please enter your managers information first');
-    //might not need this   const PromptManager = () =>
+    
     inquirer.prompt([
       {
         type: 'input',
@@ -66,22 +38,15 @@ function managerInfo() {
       ]).then(responses => {
       const manager = new Manager(responses.name, responses.email, responses.id, responses.officeNum); // do for each question asked
       teamMemberArray.push(manager);
+      //now to choice menu for adding another empoloyee or exiting the funciton. 
       menu();
     });
-
-      
-    
   };
-  // to call the menu function to add intern, Engineer or exit adding employees
- 
-  
 
-
-
+//engineer constructor function
 const engineerInfo = function() {
-   
-    //github question
-   ///not sure if this is needed const PromptEngineer = () =>
+ 
+
     inquirer.prompt([
       {
         type: 'input',
@@ -107,6 +72,7 @@ const engineerInfo = function() {
     ]).then(responses => {
       const engineer = new Engineer(responses.name, responses.email, responses.id, responses.github); // do for each question asked
       teamMemberArray.push(engineer);
+      //return to menu
       menu();
     });
 };
@@ -114,8 +80,23 @@ const engineerInfo = function() {
 const internInfo = function() {
    
     //school question
-    ///not sure if this is needed const PromptIntern = () =>
+  
     inquirer.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Employee s name?',
+      },
+      {
+          type: 'input',
+          name: 'email',
+          message: 'Employee s email?',
+        },
+        {
+          type: 'input',
+          name: 'id',
+          message: 'Employee s id# ?',
+        },
         {
           type: 'input',
           name: 'school',
@@ -123,8 +104,9 @@ const internInfo = function() {
         },
 
     ]).then(responses => {
-      const intern = new Intern(responses.school); // do for each question asked
-      teamMemberArray.push(manager); 
+      const intern = new Intern(responses.name, responses.email, responses.id,responses.school); // do for each question asked
+      teamMemberArray.push(intern); 
+      ///return to menu function
       menu();
     });
    
@@ -155,13 +137,14 @@ const menu = function(){
 
 const finished = function() {
     // put the making of the HTML here
+    fs.writeFile('./html/gen.html', generateHtml(managers, engineers, interns), (err) => 
+        err ? console.log(err) : console.log("HTML file written please check HTLM folder"));
+  }
     console.log(teamMemberArray);
-};
+
 
 function init() {
-  //inquirer.prompt(createEmployArray).then(function (data) {
-    //const employCard = generateMarkdown(data);
-    //writeToFile('README.md', markData);
+ 
     managerInfo();
     };
 
