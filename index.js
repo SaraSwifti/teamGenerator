@@ -4,8 +4,10 @@ const Intern = require("./modlib/intern");
 const Manager = require("./modlib/manager");
 const inquirer = require("inquirer");
 const fs = require("fs");
-const teamMemberArray = [];
-const generateHtml = require('./html/html-print')
+const manager = [];
+const engineer = [];
+const intern = [];
+const generateHtml = require('./html/printhtml')
 
 
 
@@ -36,8 +38,8 @@ function managerInfo() {
           message: 'What is the Manager s office number?',
         }
       ]).then(responses => {
-      const manager = new Manager(responses.name, responses.email, responses.id, responses.officeNum); // do for each question asked
-      teamMemberArray.push(manager);
+      const  newManager = new Manager(responses.name, responses.email, responses.id, responses.officeNum); // do for each question asked
+      manager.push(newManager);
       //now to choice menu for adding another empoloyee or exiting the funciton. 
       menu();
     });
@@ -69,8 +71,8 @@ function engineerInfo() {
         },
 
     ]).then(responses => {
-      const engineer = new Engineer(responses.name, responses.email, responses.id, responses.github); // do for each question asked
-      teamMemberArray.push(engineer);
+      const newEngineer = new Engineer(responses.name, responses.email, responses.id, responses.github); // do for each question asked
+      engineer.push(newEngineer);
       //return to menu
       menu();
     });
@@ -103,8 +105,8 @@ function internInfo() {
         },
 
     ]).then(responses => {
-      const intern = new Intern(responses.name, responses.email, responses.id,responses.school); // do for each question asked
-      teamMemberArray.push(intern); 
+      const newIntern = new Intern(responses.name, responses.email, responses.id,responses.school); // do for each question asked
+      intern.push(newIntern); 
       ///return to menu function
       menu();
     });
@@ -133,9 +135,9 @@ function menu(){
      };
 
 
-const finished = function() {
+const finished = function(manager, engineer, intern) {
     //put the making of the HTML here
-    fs.writeFile('./html/gen.html', generateHtml, (err) => 
+    fs.writeFile('./html/gen.html', generateHtml(manager, engineer, intern), (err) => 
         err ? console.log(err) : console.log("HTML file written please check HTLM folder"));
   }
   
