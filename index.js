@@ -44,10 +44,9 @@ function managerInfo() {
   };
 
 //engineer constructor function
-const engineerInfo = function() {
- 
-
-    inquirer.prompt([
+function engineerInfo() {
+  console.log('please enter the information for your engineer');
+ inquirer.prompt([
       {
         type: 'input',
         name: 'name',
@@ -77,8 +76,8 @@ const engineerInfo = function() {
     });
 };
 
-const internInfo = function() {
-   
+function internInfo() {
+   console.log('Please enter the information for your intern')
     //school question
   
     inquirer.prompt([
@@ -112,35 +111,34 @@ const internInfo = function() {
    
 };
 
-const menu = function(){
+function menu(){
     // not sure if this is needed const Promptmenu = () =>
     inquirer.prompt([
         {
-            type: 'checkbox',
-            message: 'Would you like to add another engineer, intern or are you done adding people on the team?',
-            name: 'menu',
+            type: 'list',
+            message:'Would you like to add another engineer, intern or are you done adding people on the team?',
+            name:'menu',
             choices: ['Engineer', 'Intern', 'Finished'],
-          },
-        ])
-        .then((data) => {
-            if(data.menu  === 'Engineer') {
+          }
+        ]).then(function(responses) {
+                 if(responses.menu === 'Engineer') {
                 engineerInfo();
-        } else if (data.menu === 'Intern') {
-            internInfo();
-        } else { 
+            } else if (responses.menu === 'Intern') {   
+                 internInfo();
+            } else { 
             finished();
+          };
+        
+        });
+     };
 
-        };
-        })
-    
-};
 
 const finished = function() {
-    // put the making of the HTML here
-    fs.writeFile('./html/gen.html', generateHtml(managers, engineers, interns), (err) => 
+    //put the making of the HTML here
+    fs.writeFile('./html/gen.html', generateHtml, (err) => 
         err ? console.log(err) : console.log("HTML file written please check HTLM folder"));
   }
-    console.log(teamMemberArray);
+  
 
 
 function init() {

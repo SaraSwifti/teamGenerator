@@ -22,9 +22,7 @@ getId () {
 getEmail () {
     return this.email
 }
-getRole() {
-    return "Employee"
-}
+
 };
 
 //this goes at the very bottom
