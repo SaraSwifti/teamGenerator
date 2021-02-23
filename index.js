@@ -135,7 +135,7 @@ function menu(){
      };
 
 
-const finished = function(manager, engineer, intern) {
+function finished() {
     //put the making of the HTML here
     fs.writeFile('./html/gen.html', generateHtml(manager, engineer, intern), (err) => 
         err ? console.log(err) : console.log("HTML file written please check HTLM folder"));

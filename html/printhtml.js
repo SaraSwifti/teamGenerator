@@ -14,9 +14,9 @@ function genManager(manager) {
                 <p class="card-text">${element.getRole()}.</p>
                 <div class="list-style">
                     <ul class=" list-group list-group-flush">
-                        <li class="list-group-item">${element.getId}</li>
-                        <li class="list-group-item">${element.getEmail}</li>
-                        <li class="list-group-item">${element.getOfficeNum}</li>
+                        <li class="list-group-item">${element.getId()}</li>
+                        <li class="list-group-item">${element.getEmail()}</li>
+                        <li class="list-group-item">${element.getOfficeNum()}</li>
                     </ul>
                 </div>
             </div>
@@ -54,6 +54,7 @@ function genEngineer(engineer) {
 }
 
 function genIntern(intern) {
+
     let internCard = '';
     if (intern.length > 0) {
         intern.forEach(element => {
@@ -74,11 +75,13 @@ function genIntern(intern) {
             `)
             
         });
+
         return internCard
     }
 }
 
 function generateHtml(manager, engineer, intern) {
+    console.log(manager, engineer, intern);
 return `
 !DOCTYPE html>
 <html lang="en">
